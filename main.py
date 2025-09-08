@@ -134,8 +134,8 @@ if choose == "Background":
         header_image = load_image_safe("images/logob.png", "images/logoB.png", "assets/images/logob.png")
         if header_image:
             st.image(header_image, width=900)
-else:
-    st.info("Header image not found. Add it at images/logob.png or update the path.")
+        else:
+            st.info("Header image not found. Add it at images/logob.png or update the path.")
 
 
     # with col2:

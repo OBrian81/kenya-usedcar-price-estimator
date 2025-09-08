@@ -29,6 +29,19 @@ from matplotlib import style
 
 # Hide Warnings
 import warnings
+from pathlib import Path
+from PIL import Image
+import streamlit as st
+
+APP_DIR = Path(__file__).resolve().parent
+
+def load_image_safe(*relative_candidates):
+    for rel in relative_candidates:
+        p = APP_DIR / rel
+        if p.exists():
+            return Image.open(p)
+    return None
+
 warnings.filterwarnings('ignore')
 
 # Enable displaying all columns and preventing truncation
@@ -118,8 +131,12 @@ if choose == "Background":
     col1, col2 = st.columns([2, 1])
 
     with col1:
-        header_image = Image.open("images\logob.png")
-        st.image(header_image, width=900)
+        header_image = load_image_safe("images/logob.png", "images/logoB.png", "assets/images/logob.png")
+        if header_image:
+            st.image(header_image, width=900)
+else:
+    st.info("Header image not found. Add it at images/logob.png or update the path.")
+
 
     # with col2:
     #     st.write("")

@@ -6,7 +6,7 @@ import joblib
 import streamlit as st
 
 APP_DIR = Path(__file__).resolve().parent
-MODEL_PATH = APP_DIR / "xgb_pipeline.pkl"
+MODEL_PATH = APP_DIR / "xgb_model.pkl"
 
 @st.cache_resource
 def load_model():
